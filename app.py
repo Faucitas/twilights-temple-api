@@ -1,10 +1,9 @@
 import os
 from dotenv import load_dotenv
-
 from flask import Flask, request, jsonify, Response, session
 from flask_sock import Sock
 
-from polly import polly_request
+# from polly import polly_request
 from totem_oracle import TotemOracle
 
 load_dotenv()
@@ -28,15 +27,15 @@ oracle = TotemOracle(OPENAI_KEY, START_CHAT_LOG)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "top-secret!"
-sock = Sock(app)
+# sock = Sock(app)
 
 
-@sock.route('/echo')
-def echo(sock):
-    while True:
-        data = sock.receive()
-        send_data = polly_request(data)
-        sock.send(send_data)
+# @sock.route('/echo')
+# def echo(sock):
+#     while True:
+#         data = sock.receive()
+#         send_data = polly_request(data)
+#         sock.send(send_data)
 
 
 @app.route('/oracle', methods=['POST'])
