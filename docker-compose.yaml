@@ -1,16 +1,8 @@
 version: '3.8'
 services:
-  flaskapp:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: gunicorn -w 4 -b :5000 app:app
-    volumes:
-      - .:/usr/src/app
-#    networks:
-#      - backend
-    env_file:
-      - .env
-#networks:
-#  backend:
-#    driver: bridge
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    user: "appuser"
+    command: ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
