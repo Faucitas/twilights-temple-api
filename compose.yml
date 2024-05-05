@@ -6,9 +6,9 @@ services:
     environment:
       - PYTHONDONTWRITEBYTECODE=1
       - PYTHONUNBUFFERED=1
-    networks:
-      - ollamaapi_default
-
-networks:
-  ollamaapi_default:
-    external: true
+#    networks:
+#      - bridge
+#
+#networks:
+#  bridge:
+#    external: true
