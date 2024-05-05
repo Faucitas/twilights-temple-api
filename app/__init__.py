@@ -1,5 +1,5 @@
-from flask import Flask, jsonify
-
+from flask import Flask, jsonify, request
+from temple_god import generate_response
 
 def create_app():
     app = Flask(__name__)
@@ -8,14 +8,12 @@ def create_app():
     def hello():
         return jsonify(message="Hello, World!")
 
-    @app.route('/user')
-    def user():
-        user_info = {
-            "name": "Alice",
-            "age": 30,
-            "city": "New York"
-        }
-        return jsonify(user_info)
+    @app.route('/god')
+    def god():
+        data = request.get_json()
+        prompt = data.get("prompt")
+        answer = generate_response(prompt)
+        return jsonify(data)
 
     @app.route('/error')
     def error():
@@ -25,5 +23,5 @@ def create_app():
 
 
 # if __name__ == '__main__':
-#     app = create_app()
+    # app = create_app()
 #     app.run(debug=True)
